@@ -1,0 +1,77 @@
+/* Topbar */
+.topbar {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  background-color: purple;
+  color: white;
+  padding: 10px 20px;
+}
+
+.menu-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+
+}
+
+.logo img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed; /* sayfada sabit konumda kalması için */
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  color: white;
+  overflow-x: hidden;
+  transition: 0.3s; /* yumuşak açılıp kapanma */
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  z-index: 1000; /* sidebar'ı diğer tüm elementlerin üstüne çıkarır */
+}
+
+/* sidebar açık olduğunda */
+.sidebar.open {
+  left: 0; /* görünür hale gelir */
+}
+
+/* Sidebar bağlantıları */
+.sidebar a {
+  padding: 10px 15px;
+  text-decoration: none;
+  color: white;
+  display: block;
+}
+
+.sidebar a:hover {
+  background-color: #575757;
+}
+
+.exit-btn {
+  border: none;
+  padding: 10px 20px;
+  margin-top: auto;
+  text-align: center;
+  width: 100%;
+}
+.completed {
+  background-color: #d4edda !important; /* Açık yeşil */
+  text-decoration: line-through;
+  color: #155724 !important; /* Yeşil yazı rengi */
+}
+
+.todo-text{
+  margin-left: 15px;
+}

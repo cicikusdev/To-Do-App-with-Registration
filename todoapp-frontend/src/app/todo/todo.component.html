@@ -1,0 +1,107 @@
+<div class="topbar">
+  <div class="menu-icon" (click)="toggleSidebar()">&#9776;</div>
+  <div class="logo">
+    <img src="/mergen.jpeg" alt="Logo" />
+    <span>To-Do App</span>
+  </div>
+</div>
+
+<!-- Sidebar -->
+<div class="sidebar" [class.open]="isSidebarOpen">
+  <button class="close-btn" (click)="toggleSidebar()">&#x2718;</button>
+  <a routerLink="/home">  <i class="fas fa-home"></i> Home Page</a>
+  <a routerLink="/completed"> <i class="fa fa-check" aria-hidden="true"></i> Completed To-Dos</a>
+  <a routerLink="/discover"> <i class="fa fa-compass" aria-hidden="true"></i> Discover</a>
+  <button class="exit-btn" (click)="logout()"><i class="fa fa-sign-out" aria-hidden="true"></i>Sign out</button>
+</div>
+
+
+<div class="container">
+  <h1 class="mt-4">Todo List</h1>
+
+  <form (submit)="addTodo(); $event.preventDefault()">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input
+        type="text"
+        id="title"
+        class="form-control"
+        [(ngModel)]="chosenTodo.title"
+        name="title"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input
+        type="text"
+        id="description"
+        class="form-control"
+        [(ngModel)]="chosenTodo.description"
+        name="description"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">
+      @if (chosenTodo.id) {
+        Update Todo
+      } @else {
+        Add Todo
+      }
+    </button>
+  </form>
+
+  <ul class="list-group mt-4">
+    <li
+      class="list-group-item d-flex justify-content-between align-items-center"
+      *ngFor="let todo of todos"
+      [class.completed]="todo.completed"
+    >
+      <div class="d-flex align-items-center">
+        <button
+          class="btn btn-success btn-sm mr-2"
+          (click)="markAsCompleted(todo)"
+        >
+          ✔
+        </button>
+        <div class="todo-text">
+          <strong>{{ todo.title }}</strong>
+          <p>{{ todo.description }}</p>
+        </div>
+      </div>
+      <div>
+        <button class="btn btn-warning btn-sm" (click)="editTodo(todo)">Edit</button>
+        <button class="btn btn-danger btn-sm" (click)="deleteTodo(todo.id!)">Delete</button>
+      </div>
+    </li>
+  </ul>
+
+<!--  &lt;!&ndash; Edit Todo Form &ndash;&gt;-->
+<!--  <div *ngIf="todoToEdit" class="mt-4">-->
+<!--    <h2>Edit Todo</h2>-->
+<!--    <form (submit)="addTodo(); $event.preventDefault()">-->
+<!--      <div class="form-group">-->
+<!--        <label for="editTitle">Title</label>-->
+<!--        <input-->
+<!--          type="text"-->
+<!--          id="editTitle"-->
+<!--          class="form-control"-->
+<!--          [(ngModel)]="todoToEdit.title"-->
+<!--          name="title"-->
+<!--          required-->
+<!--        />-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="editDescription">Description</label>-->
+<!--        <input-->
+<!--          type="text"-->
+<!--          id="editDescription"-->
+<!--          class="form-control"-->
+<!--          [(ngModel)]="todoToEdit.description"-->
+<!--          name="description"-->
+<!--        />-->
+<!--      </div>-->
+<!--      <button type="submit" class="btn btn-primary mt-2">Update Todo</button>-->
+<!--      <button type="button" class="btn btn-secondary mt-2" (click)="cancelEdit()">Cancel</button>-->
+<!--    </form>-->
+<!--  </div>-->
+</div>
